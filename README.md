@@ -13,3 +13,5 @@ Download gecko driver here: https://github.com/mozilla/geckodriver/releases
 Download firefox
 
 Place both firefox and geckodriver in the drivers folder.
+
+Run scraper.py
