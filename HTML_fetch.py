@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from process_HTML import ProcessHTML
 import time
 
+# This class opens the browser and navigates to the specified URL -> attempts to grab HTML contents of each page
 class WebFetch:
 
     def __init__(self, max_pages=5,min_like_values = 5):
@@ -16,20 +17,20 @@ class WebFetch:
         self.max_pages = max_pages
         self.setup()
 
-    def get_web_content(self, url):
+    def get_web_content(self, url, waitMultiplier=1):
             infinite_scroll = True
             self.driver.get(url) # open brower and navigate to target url
-            time.sleep(2) # wait a little for stuff to load
+            time.sleep(2 * waitMultiplier) # wait a little for stuff to load
             last_height = self.driver.execute_script("return document.body.scrollHeight") # get the height of the page
             for i in range(self.max_pages): # scroll down the page (many sites use infinite scrolling)
                 self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") # scroll to bottom of page
-                time.sleep(1) # let new stuff load
+                time.sleep(1 * waitMultiplier) # let new stuff load
                 new_height = self.driver.execute_script("return document.body.scrollHeight") # check to see if the page height changes in response to scrolling
                 if new_height == last_height: # if the height does not change it probably means that the page does not employ infinite scrolling
                     infinite_scroll = False
                     break # exit the loop so we dont waste time
 
-            processer = ProcessHTML()
+            processer = ProcessHTML(url)
 
             if not infinite_scroll:
                 HTML_buffer = []
@@ -37,7 +38,7 @@ class WebFetch:
                     processer.get_items(self.driver.page_source)
                     if not self.navigate_to_next_page():
                         break
-                    time.sleep(1)
+                    time.sleep(1 * waitMultiplier)
             else:
                 processer.get_items(self.driver.page_source)
 

@@ -5,8 +5,8 @@ from RepetitiveElement import ElementContainer
 class ProcessHTML:
     min_like_values = 5
 
-    def __init__(self):
-        self.rep_elems = ElementContainer()
+    def __init__(self, url):
+        self.rep_elems = ElementContainer(url)
 
     def reset(self):
         self.rep_elems.content = []
