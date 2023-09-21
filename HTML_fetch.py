@@ -9,73 +9,97 @@ from selenium.webdriver.common.by import By
 from process_HTML import ProcessHTML
 import time
 
-# This class opens the browser and navigates to the specified URL -> attempts to grab HTML contents of each page
+# Class to handle web fetching of pages and extracting content
 class WebFetch:
-
-    def __init__(self, max_pages=5,min_like_values = 5):
+    # Constructor initializes with default max_pages and minimum likes
+    def __init__(self, max_pages=5, min_like_values=5):
         self.min_like_values = min_like_values
         self.max_pages = max_pages
-        self.setup()
+        self.setup()  # set up web driver
 
+    # Function to get content of a webpage
     def get_web_content(self, url, waitMultiplier=1):
-            infinite_scroll = True
-            self.driver.get(url) # open brower and navigate to target url
-            time.sleep(2 * waitMultiplier) # wait a little for stuff to load
-            last_height = self.driver.execute_script("return document.body.scrollHeight") # get the height of the page
-            for i in range(self.max_pages): # scroll down the page (many sites use infinite scrolling)
-                self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") # scroll to bottom of page
-                time.sleep(1 * waitMultiplier) # let new stuff load
-                new_height = self.driver.execute_script("return document.body.scrollHeight") # check to see if the page height changes in response to scrolling
-                if new_height == last_height: # if the height does not change it probably means that the page does not employ infinite scrolling
-                    infinite_scroll = False
-                    break # exit the loop so we dont waste time
+        # Check if webpage uses infinite scrolling
+        infinite_scroll = True
 
-            processer = ProcessHTML(url)
+        # Open browser and navigate to specified URL
+        self.driver.get(url)  
+        # Allow some time for the page to load
+        time.sleep(2 * waitMultiplier)  
 
-            if not infinite_scroll:
-                HTML_buffer = []
-                for i in range(self.max_pages):
-                    processer.get_items(self.driver.page_source)
-                    if not self.navigate_to_next_page():
-                        break
-                    time.sleep(1 * waitMultiplier)
-            else:
+        # Get the current height of the webpage
+        last_height = self.driver.execute_script("return document.body.scrollHeight")
+
+        # Try to scroll to see if there's more content (to handle infinite scrolling)
+        for i in range(self.max_pages):  
+            # Scroll to the bottom of the current page view
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            # Pause for new content to load if there's any
+            time.sleep(1 * waitMultiplier)  
+            # Get new height of the page
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            # If height doesn't change, infinite scroll isn't present
+            if new_height == last_height:  
+                infinite_scroll = False
+                break
+
+        processer = ProcessHTML(url)
+
+        # If no infinite scroll, process each page
+        if not infinite_scroll:
+            HTML_buffer = []
+            for i in range(self.max_pages):
                 processer.get_items(self.driver.page_source)
+                if not self.navigate_to_next_page():
+                    break
+                time.sleep(1 * waitMultiplier)
+        else:
+            processer.get_items(self.driver.page_source)
 
-            return processer.rep_elems
-    
+        return processer.rep_elems
+
+    # Setup function initializes web driver settings
     def setup(self):
         self.options = webdriver.FirefoxOptions()
+        # Point to the location of Firefox binary
         self.options.binary_location = "./drivers/Firefox.app"
-        self.options.add_argument("--headless=new") 
+        # Run Firefox in headless mode
+        self.options.add_argument("--headless=new")  
+        # Initialize the web driver
         self.driver = webdriver.Firefox(options=self.options)
 
+    # Function to close the browser session
     def end_session(self):
         self.driver.close()
 
     def get_items(self):
         self.traverse_tree(self.soup.body)
 
+    # Function to navigate to the next page of a multi-page website
     def navigate_to_next_page(self):
-        elements = self.driver.find_elements(By.TAG_NAME, 'a') # also consider selecting other elements if there are none 
+        # Look for all anchor tags
+        elements = self.driver.find_elements(By.TAG_NAME, 'a')
         has_next_page = False
+
+        # Check each link to see if it indicates a 'next page'
         for element in elements:
-            text = element.text.lower().strip() # maybe also consider fuzzy text matching here instead
+            text = element.text.lower().strip()
+            # If the link has "next" in its text, consider it a next page link
             if "next" in text:
                 self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 time.sleep(0.5)
                 has_next_page = True
                 element.click()
                 break
-            else:
-                pass # add identification of other common 'next page' arrows / buttons here
-        
-        return has_next_page
+
+        return has_next_page  # Return True if next page is found, False otherwise
+
     
     def attempt_to_load_more(self):
         pass
 
     
+    # DEPRECIATED: classic HTML fetch method - doesnt load JS
     @classmethod
     def fetchHTML(cls, url, fake_headers=True):
         headers = {

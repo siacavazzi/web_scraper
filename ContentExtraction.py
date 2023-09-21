@@ -5,9 +5,7 @@ import json
 import concurrent.futures
 
 openai.api_key = key
-
-
-    
+  
 def get_completion_timout(prompt, model="gpt-3.5-turbo", temperature=0.1,timeout=10):
      
     def get_completion():
