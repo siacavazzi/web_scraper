@@ -6,7 +6,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
-from process_HTML import ProcessHTML
+from lib.content_identifier import ProcessHTML
 import time
 
 # Class to handle web fetching of pages and extracting content

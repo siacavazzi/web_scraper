@@ -1,5 +1,5 @@
 import openai
-from key import key
+from lib.key import key
 from bs4 import BeautifulSoup
 import json
 import concurrent.futures

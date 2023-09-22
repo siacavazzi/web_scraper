@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup, Tag
 from collections import defaultdict
-from RepetitiveElement import ElementContainer
+from lib.RepetitiveElement import ElementContainer
 
 # Class to process and analyze HTML content
 class ProcessHTML:

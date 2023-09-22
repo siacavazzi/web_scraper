@@ -1,4 +1,4 @@
-from ContentExtraction import extract_contents
+from lib.GPT_structuring import extract_contents
 import json
 import csv
 import os
