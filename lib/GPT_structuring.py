@@ -6,8 +6,10 @@ import concurrent.futures
 
 openai.api_key = key
   
+ # this is essentially a normal GPT function but with a timeout - i.e. if GPT takes too long to respond
+ # the function will time out and return None to limit processing time 
 def get_completion_timout(prompt, model="gpt-3.5-turbo", temperature=0.1,timeout=10):
-     
+    # nested GPT function 
     def get_completion():
         messages = [{"role": "system", "content": prompt}]
         
@@ -17,14 +19,16 @@ def get_completion_timout(prompt, model="gpt-3.5-turbo", temperature=0.1,timeout
             temperature=temperature
         )
         return response.choices[0].message["content"]
-     
+    # dont 100% understand this but i believe its running on another thread 
     with concurrent.futures.ThreadPoolExecutor() as executor:
           future = executor.submit(get_completion)
           try:
                return future.result(timeout=timeout)
+          # exception for timeout
           except concurrent.futures.TimeoutError:
                print("API call took too long... moving on")
                return None
+          # exception for any GPT related error
           except Exception as e:
                print("GPT Error")
                print(e)
@@ -32,14 +36,14 @@ def get_completion_timout(prompt, model="gpt-3.5-turbo", temperature=0.1,timeout
                
                
 
-
+# extracts visible text from raw html and structures it with GPT
 def extract_contents(element):
 
-    print("DEBUG::")
     soup = BeautifulSoup(str(element), 'lxml')
-
+    # get all links in the HTML
     links = [a['href'] for a in soup.find_all('a', href=True)]
 
+    # all of this text processing is to remove anything that is not plain text in the html
     for script in soup(["script", "style"]):
             script.extract()
 
@@ -48,12 +52,15 @@ def extract_contents(element):
     chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
     text = '-'.join(chunk for chunk in chunks if chunk)
     print("getting response...")
+
+    # structure contents 
     structured = structure_contents(text, links)
     print("done structureing")
     return structured
-            
+
+# turn plain text into structured JSON via GPT
 def structure_contents(contents, links):
-    print(contents)
+    # tags and GPT prompt
     event_tags = [
     "Music", "Happy-hour", "Food", "Networking", "Art", "Workshop", "Sports", 
     "Charity", "Education", "Festival", "Outdoor", "Performance", "Lecture",
@@ -89,18 +96,18 @@ If any attribute isn't present or identifiable, use the format:
 Never omit a variable in the output JSON, always use the above format.
 """
 
-
-
     resp = get_completion_timout(prompt)
     print(resp)
 
+    # attempt to parse JSON
     try:
+        # ensure common errors are fixed. Ex: false -> False
         valid_json_string = (resp.replace("Null", "null")
                     .replace("False", "false")
                     .replace("True", "true"))
         event = json.loads(valid_json_string)
         return event
-    except Exception as e:
+    except Exception as e: # return None if error
         print("Error converting GPT ouput to JSON")
         print(e)
         return None

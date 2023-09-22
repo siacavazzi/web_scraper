@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup, Tag
 import re
 import json
 
+# I had GPT write these comments
 # Represents elements that are repetitive in the web content
 class RepetitiveElement:
     # Constructor initializes with identification, count of occurrences, content, and optional source URL
