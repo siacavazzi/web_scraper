@@ -2906,3 +2906,74 @@ JavaScript warning: https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.
 JavaScript warning: https://pagead2.googlesyndication.com/bg/tGcDLxZnxcZjneq6ZTfMhLSKmVRaNAcBIKHxIKG0fIc.js line 2 > eval line 5992 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
 1695337829470	Marionette	INFO	Stopped listening on port 56227
 JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1695397820280	geckodriver	INFO	Listening on 127.0.0.1:50640
+1695397820792	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/Use ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/cr/jzj7b4gx2klb1sgw61ncj_lh0000gn/T/rust_mozprofilepThVXo"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1695397821352	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-headless"
+console.error: "Warning: unrecognized command line flag" "-remote-allow-hosts"
+1695397821570	Marionette	INFO	Listening on port 50656
+WebDriver BiDi listening on ws://127.0.0.1:50641
+Read port: 50656
+1695397821728	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+DevTools listening on ws://127.0.0.1:50641/devtools/browser/10b60c62-a231-41b2-9927-b522931c8f11
+JavaScript warning: https://dice.fm/_next/static/chunks/pages/_app-236ae3b23fcff1ee.js, line 8: Script terminated by timeout at:
+88626/F/<@https://dice.fm/_next/static/chunks/pages/_app-236ae3b23fcff1ee.js:8:291446
+n@https://dice.fm/_next/static/chunks/pages/_app-236ae3b23fcff1ee.js:8:290806
+
+JavaScript warning: https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js, line 2: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: https://pagead2.googlesyndication.com/bg/tGcDLxZnxcZjneq6ZTfMhLSKmVRaNAcBIKHxIKG0fIc.js line 2 > eval line 1741 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/zoJWBzK8T3bx0gS17Fy3cZjSCDkxpLbxY97VcN3Od5s.js line 2 > eval line 5766 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://www.nyc.gov/assets/home/js/classes/NYC.EventsFilter.js, line 90: unreachable code after return statement
+1695397978306	geckodriver	INFO	Listening on 127.0.0.1:51463
+1695397978824	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/Use ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/cr/jzj7b4gx2klb1sgw61ncj_lh0000gn/T/rust_mozprofileKi421j"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1695397979129	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-headless"
+console.error: "Warning: unrecognized command line flag" "-remote-allow-hosts"
+1695397979232	Marionette	INFO	Listening on port 51473
+Read port: 51473
+WebDriver BiDi listening on ws://127.0.0.1:51464
+1695397979285	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+DevTools listening on ws://127.0.0.1:51464/devtools/browser/0943c724-8a4e-4028-96a7-9a9ac4df4e80
+JavaScript warning: https://sc-static.net/scevent.min.js, line 2: Script terminated by timeout at:
+g@https://sc-static.net/scevent.min.js:2:2519
+a@https://sc-static.net/scevent.min.js:2:6221
+
+JavaScript warning: https://cdn.evbstatic.com/s3-build/fe/build/vendor.397e9fd19fde795633a1.web.js, line 2: Script terminated by timeout at:
+sentryWrapped@https://cdn.evbstatic.com/s3-build/fe/build/vendor.397e9fd19fde795633a1.web.js:2:147247
+
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1695397995247	Marionette	INFO	Stopped listening on port 51473
+JavaScript warning: https://script.hotjar.com/modules.87c64ece4c32532efcb6.js, line 2: Script terminated by timeout at:
+t<@https://script.hotjar.com/modules.87c64ece4c32532efcb6.js:2:42055
+
+1695398611538	geckodriver	INFO	Listening on 127.0.0.1:54335
+1695398612054	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/Use ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/cr/jzj7b4gx2klb1sgw61ncj_lh0000gn/T/rust_mozprofilehdskYn"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1695398612375	Marionette	INFO	Marionette enabled
+console.error: "Warning: unrecognized command line flag" "-headless"
+console.error: "Warning: unrecognized command line flag" "-remote-allow-hosts"
+1695398612482	Marionette	INFO	Listening on port 54345
+WebDriver BiDi listening on ws://127.0.0.1:54336
+Read port: 54345
+1695398612641	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+DevTools listening on ws://127.0.0.1:54336/devtools/browser/dc1f1873-cc69-4d8a-8eaa-a2011412ceec
+JavaScript warning: https://sc-static.net/scevent.min.js, line 2: Script terminated by timeout at:
+g@https://sc-static.net/scevent.min.js:2:2519
+a@https://sc-static.net/scevent.min.js:2:6221
+
+JavaScript warning: https://cdn.evbstatic.com/s3-build/fe/build/vendor.397e9fd19fde795633a1.web.js, line 2: Script terminated by timeout at:
+sentryWrapped@https://cdn.evbstatic.com/s3-build/fe/build/vendor.397e9fd19fde795633a1.web.js:2:147247
+
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1695398628313	Marionette	INFO	Stopped listening on port 54345
+JavaScript warning: https://script.hotjar.com/modules.87c64ece4c32532efcb6.js, line 2: Script terminated by timeout at:
+t<@https://script.hotjar.com/modules.87c64ece4c32532efcb6.js:2:42055
+

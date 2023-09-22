@@ -29,9 +29,10 @@ class RepetitiveElement:
         # Create a sanitized filename using only word characters from the source URL
         name = "".join([c for c in self.source if re.match(r'\w', c)])  # consider adding date here
         file_path = f"raw_html/{name}.html"
-        with open(file_path, "x") as f:
+        with open(file_path, "w") as f:
             formatted_text = [str(item) for item in self.content]
             json.dump(formatted_text, f)
+        return file_path
 
 
 # Container to hold all the repetitive elements found in the web content
